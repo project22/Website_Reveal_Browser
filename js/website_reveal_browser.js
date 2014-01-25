@@ -7,6 +7,8 @@ $(function() {
   $("#view-1").width(browserWidth);
   $("#view-2").width(0);
 
+  $("#sweeper").css({'left': browserWidth});
+
   function flipPage (x) {
 
 		$( "#view-1" ).animate({
@@ -21,10 +23,22 @@ $(function() {
 	    left:	-x,
 	  	}, 500, function() {
 	  });
+	  $("#sweeper").animate({
+	    left:	x,
+	  	}, 500, function() {
+	  });
 
   }
+
+  $(window).bind('resize', function() {
+     location.reload();
+	});
 	
+
+  flipPage(browserWidth-(browserWidth*.1))
+
 	console.log(websites);
+
 
   var clicking = false;
 

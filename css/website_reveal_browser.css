@@ -6,7 +6,8 @@
 	text-shadow: -1px 1px 1px grey;
 	color: white;
 	font-size: 24pt;
-	padding: 20px;
+	padding-top: 10px;
+	padding-left: 20px;
 	font-family: 'Muli', sans-serif;
 	font-weight: lighter;
 
@@ -22,7 +23,7 @@
 #view-1 {
 	height: 100%;
 	width: 100%;
-	background-color: red;
+	background-color: grey;
 	float: left;
 	overflow: hidden;
 
@@ -31,7 +32,7 @@
 #view-2 {
 	height: 100%;
 	width: 100%;
-	background-color: blue;
+	background-color: grey;
 	float: left;
 	overflow: hidden;
 	-moz-box-shadow: 0 0 30px 5px rgba(0, 0, 0, 0.5);
@@ -53,4 +54,14 @@ iframe {
 #iframe-2 {
 	position: relative;
 	left: -200px;
+}
+
+#sweeper {
+	background-color: black;
+	width: 1px;
+	height: 100%;
+	position: fixed;
+	left:1px;
+	top:40px;
+	z-index:10;
 }
