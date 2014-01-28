@@ -1,84 +1,73 @@
 $(function() {
   
   browserWidth = $(window).width();
-
   $("iframe").css( "width", browserWidth );
-
   websiteIndex = 0 ;
-  resetFrames();
+  numberSites = websites.websites.length;
+  mystring = "<p>hello world</p>";
 
+  for (i=0; i < numberSites; i++) {
+  	console.log(i);
+  	iframeHTML = "<div class='view-container' id='container_" + i + "'><iframe src='"+ websites.websites[i].url +"' id = 'iframe_" + i + "'></div>";
+  	$("#browser-container").append(iframeHTML);
+  	$("#iframe_" + i ).css( "left", - (browserWidth - (numberSites - i) * 20));  
 
-  function flipPage (x) {
+  	sweeperHTML = "<div class = 'sweeper' id='sweeper_" + i + "'></div>";
+  	$("body").append(sweeperHTML);
+  	$("#sweeper_" + i ).css( "left",  (browserWidth - (numberSites - i -1) * 20));  
+  }
 
-		$("#view-1").animate({
-	    width: x,
+  setup();
+
+  function flipPage () {
+  	if (websiteIndex <= numberSites-2) {
+  		$("#container_" + websiteIndex).animate({
+	    width: 20,
 	  	}, 500);
-	  $("#view-2").animate({
-	    width: browserWidth - x,
-	  	}, 500);
-	  $("#iframe-2").animate({
-	    left:	-x,
-	  	}, 500);
-	  $("#sweeper").animate({
-	    left:	x,
-	  	}, 500,function(){ resetFrames() });
+		  $("#container_" + (websiteIndex + 1)).animate({
+		    width: browserWidth - ((numberSites - 1) * 20),
+		  	}, 500);
+		  $("#iframe_" + (websiteIndex + 1)).animate({
+		    left:	-20 * (websiteIndex + 1),
+		  	}, 500);
+		  $("#sweeper_" + websiteIndex).animate({
+		    left:	20 * (websiteIndex + 1),
+		  	}, 500);
+		  $("#header").animate({
+		  	text: websites.websites[websiteIndex + 1].name
+		  }, 500, function(){
+		  	$("#header").html(websites.websites[websiteIndex].name)
+		  });
+		  
+
+		  websiteIndex ++;
+  	}
   }
 
  //  $(window).bind('resize', function() {
  //     location.reload();
 	// });
 	
-	function resetFrames() {
-		
-		
+	function setup() {
+			
 		$("#header").html(websites.websites[websiteIndex].name)
-		$("#iframe-1").attr('src', websites.websites[websiteIndex].url);
-  	$("#iframe-2").attr('src', websites.websites[websiteIndex + 1].url);
-  	$('#iframe-1').load(function(){
-  		// alert("done loading");
-      $("#view-1").css( "width", browserWidth );
-	  	$("#view-2").css( "width", 0 );
-	  	$("#iframe-2").css( "left", -browserWidth );
-	  	$("#sweeper").css( "left", browserWidth );    
-	  });
-	  	
-  	websiteIndex += 1;
+    $("#container_" + websiteIndex).css( "width", browserWidth - ((numberSites - 1) * 20));
+    $("#iframe_" + websiteIndex).css( "left", (websiteIndex * 20));  
+  	$("#sweeper").css( "left", browserWidth - ((numberSites - 1) * 20));    
+
 	}
 
-  // flipPage(browserWidth-(browserWidth*.1))
 
 	console.log(websites.websites[0].name);
 
 
-  var clicking = false;
-
-	// $(window).mousedown(function(){
-	//     clicking = true;
-	//    	flipPage(event.clientX);
-	
-	// });
-
 	$("#scroll-left").mouseup(function(){
 		flipPage(0);
-		// resetFrames();
 	})
 
 
 
 
 
-	// $(document).mouseup(function(){
-	//     clicking = false;
-	//     // $('.clickstatus').text('mouseup');
-	//     // $('.movestatus').text('click released, no more move event');
-	// })
-
-	// $('#header').mousemove(function(){
-	//     if(clicking == false) return;
-
-	//     // Mouse click + moving logic here
-	   
-	//     // alert("mouse moving");
-	// });
 
 });
