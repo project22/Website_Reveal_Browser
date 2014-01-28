@@ -1,21 +1,15 @@
 $(function() {
   
+
   browserWidth = $(window).width();
-  $("iframe").css( "width", browserWidth );
+
   websiteIndex = 0 ;
   numberSites = websites.websites.length;
-  mystring = "<p>hello world</p>";
 
-  for (i=0; i < numberSites; i++) {
-  	console.log(i);
-  	iframeHTML = "<div class='view-container' id='container_" + i + "'><iframe src='"+ websites.websites[i].url +"' id = 'iframe_" + i + "'></div>";
-  	$("#browser-container").append(iframeHTML);
-  	$("#iframe_" + i ).css( "left", - (browserWidth - (numberSites - i) * 20));  
+  $("#scroll-right").hide();
+  $("#scroll-left").hide();
 
-  	sweeperHTML = "<div class = 'sweeper' id='sweeper_" + i + "'></div>";
-  	$("body").append(sweeperHTML);
-  	$("#sweeper_" + i ).css( "left",  (browserWidth - (numberSites - i -1) * 20));  
-  }
+  $("#scroll-left").show("slow");
 
   setup();
 
@@ -39,6 +33,10 @@ $(function() {
 		  	$("#header").html(websites.websites[websiteIndex].name)
 		  });
 		  
+		  if (websiteIndex == numberSites - 2) {
+		  	$("#scroll-right").show("slow");
+		  	$("#scroll-left").hide("slow");
+		  }
 
 		  websiteIndex ++;
   	}
@@ -49,6 +47,20 @@ $(function() {
 	// });
 	
 	function setup() {
+
+		  for (i=0; i < numberSites; i++) {
+		  	console.log(i);
+		  	iframeHTML = "<div class='view-container' id='container_" + i + "'><iframe src='"+ websites.websites[i].url +"' id = 'iframe_" + i + "'></div>";
+		  	
+
+		  	$("#browser-container").append(iframeHTML);
+		  	$("#iframe_" + i ).css( "left", - (browserWidth - (numberSites - i) * 20),
+		  		"width", 1200);  
+
+		  	sweeperHTML = "<div class = 'sweeper' id='sweeper_" + i + "'></div>";
+		  	$("body").append(sweeperHTML);
+		  	$("#sweeper_" + i ).css( "left",  (browserWidth - (numberSites - i -1) * 20));  
+		  }
 			
 		$("#header").html(websites.websites[websiteIndex].name)
     $("#container_" + websiteIndex).css( "width", browserWidth - ((numberSites - 1) * 20));
@@ -58,13 +70,19 @@ $(function() {
 	}
 
 
-	console.log(websites.websites[0].name);
 
 
 	$("#scroll-left").mouseup(function(){
 		flipPage(0);
 	})
 
+	$("#scroll-right").mouseup(function() {
+		$("#scroll-right").hide("slow");
+		$("#scroll-left").show("slow");
+		  	 
+		websiteIndex = 0 ;
+		setup();
+	})
 
 
 

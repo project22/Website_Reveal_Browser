@@ -7,7 +7,6 @@
 	color: white;
 	font-size: 24pt;
 	padding-top: 10px;
-	padding-left: 20px;
 	font-family: 'Muli', sans-serif;
 	font-weight: lighter;
 	text-align: center;
@@ -47,7 +46,7 @@ iframe {
 	background-color: black;
 	width: 1px;
 	height: 100%;
-	position: fixed;
+	position: absolute;
 	left:1px;
 	top: 20px;
 	z-index:10;
