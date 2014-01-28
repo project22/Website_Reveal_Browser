@@ -1,14 +1,11 @@
 $(function() {
   
-
   browserWidth = $(window).width();
-
   websiteIndex = 0 ;
   numberSites = websites.websites.length;
 
   $("#scroll-right").hide();
   $("#scroll-left").hide();
-
   $("#scroll-left").show("slow");
 
   setup();
@@ -37,7 +34,7 @@ $(function() {
 		  	$("#scroll-right").show("slow");
 		  	$("#scroll-left").hide("slow");
 		  }
-
+		  
 		  websiteIndex ++;
   	}
   }
@@ -69,9 +66,6 @@ $(function() {
 
 	}
 
-
-
-
 	$("#scroll-left").mouseup(function(){
 		flipPage(0);
 	})
@@ -83,9 +77,5 @@ $(function() {
 		websiteIndex = 0 ;
 		setup();
 	})
-
-
-
-
 
 });
