@@ -79,6 +79,7 @@ iframe {
 	border-color: grey;
 	background-color: yellow;
 	z-index: 20;
+	cursor: pointer;
 } 
 
 #scroll-left {
