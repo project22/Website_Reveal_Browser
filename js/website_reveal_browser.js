@@ -14,7 +14,7 @@ $(function() {
   setup();
 
   function flipPage (direction) {
-  	if (direction == "left") {
+  	if (direction == "right") {
 
   		if (websiteIndex <= numberSites-2) {
 	  		$("#container_" + websiteIndex).animate({
@@ -38,7 +38,7 @@ $(function() {
 			  websiteIndex ++;
 	  	}
 
-  	} else if (direction == "right") {
+  	} else if (direction == "left") {
 
   		if (websiteIndex > 0) {
 
